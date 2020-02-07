@@ -1,60 +1,31 @@
 import React from "react";
-import {withStyles} from "@material-ui/core";
-
-const styles = theme => ({
-    root: {
-        minWidth: 'calc(100% - 13.6rem)',
-        maxWidth: 'calc(100% - 13.6rem)',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        color: 'white',
-    },
-});
+import Styles from './Footer.module.css';
 
 class BigContent extends React.Component {
 
     render() {
 
         return (
-            <>
-                <div className='flex items-center'>
+            <div className='flex mb-4'>
 
-                    <div className='pr-12'>
+                | 口罩地圖 ver 1.0 by
+                <a className={Styles.link} href='https://github.com/andrew781026' target='_blank'>
+                    Andrew
+                </a>
 
-                        | 口罩地圖 ver 1.0 by Andrew {/* e<sup>πi</sup>+1=0*/}
+                {/* e<sup>πi</sup>+1=0*/}
 
-                    </div>
+                <span className='pl-12'>| 資料來源 : 衛福部</span>
 
-                    <div className='pr-12'>
-
-                        | 資料來源 : 衛福部
-
-                    </div>
-
-                </div>
-            </>
+            </div>
         )
     }
 }
 
-const Footer = ({classes}) => (
-    <div className={`flex h-24 bg-black z-20 fixed pin-b root`}>
+const Footer = () => (
+    <div className={`flex px-8 h-24 bg-black z-20 fixed pin-b pin-r ${Styles.root}`}>
         <BigContent/>
-        { /*language=CSS*/}
-        <style jsx>
-            {`
-                .root {
-
-                    min-width: calc(100% - 13.6rem);
-                    max-width: calc(100% - 13.6rem);
-                    align-items: center;
-                    justify-content: space-between;
-                    color: white;
-
-                }
-            `}
-        </style>
     </div>
 );
 
-export default withStyles(styles)(Footer);
+export default Footer;
