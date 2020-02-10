@@ -11,3 +11,17 @@
 ## 使用的 UI 設計
 
 UI 設計 - https://projects.invisionapp.com/share/X6VVKDJSR8W#/screens/403958946 
+
+## 其他 
+
+地圖說明影片 - https://youtu.be/pUizu62dlnY
+
+https://kuro.tw/mask-map/
+
+https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6     
+         
+https://github.com/CSSEGISandData/2019-nCoV
+
+https://mtwmt.github.io/maskmap/
+
+共筆文件：https://quip.com/vdqYAiFHHkaV

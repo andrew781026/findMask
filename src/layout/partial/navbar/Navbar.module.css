@@ -6,6 +6,43 @@
     min-height: calc(100vh - 8.0rem);
     max-height: calc(100vh - 8.0rem);
     width: 270px;
-    border-right: 1px solid rgba(0,0,0,0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
     overflow-y: auto;
 }
+
+.adult_mask {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex: 1;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #06b66c;
+    font-size: 12px;
+}
+
+.children_mask {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    flex: 1;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #faa23f;
+    font-size: 12px;
+}
+
+.search_root {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.card_root {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 14px 8px 14px; /* (top, right, bottom, and left) */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
