@@ -19,8 +19,8 @@ class DropDown extends React.Component {
 
         return (
             <StyledSelect variant="filled" fullWidth value={this.state.value} onChange={this.handleChange}>
-                {(this.props.data || []).map(item => (
-                    <MenuItem value={item.value}>{item.label}</MenuItem>
+                {(this.props.data || []).map((item,index) => (
+                    <MenuItem key={`item-${index}`} value={item.value}>{item.label}</MenuItem>
                 ))}
             </StyledSelect>
         )

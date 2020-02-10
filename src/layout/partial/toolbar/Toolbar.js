@@ -9,8 +9,6 @@ const getText = (number) => {
 
     const weekDay = moment().weekday();
 
-    console.log('weekDay=', weekDay);
-
     if (!number) return '請設定您的身分證尾碼';
     else if (weekDay === 0) return `您今日可以購買口罩歐！(尾數${number})`;
     else {

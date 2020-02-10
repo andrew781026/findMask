@@ -84,9 +84,9 @@ const Navbar = (props) => (
             </div>
 
             {
-                medicalStores.map(store => (
+                medicalStores.map((store,index) => (
 
-                    <div className={Styles.card_root}>
+                    <div className={Styles.card_root} key={`card-${index}`}>
                         <div style={{fontWeight: 900, color: '#848484'}}>{store.name}</div>
                         <div style={{paddingTop: '2px'}}>
                             <div style={{fontSize: '10px', color: '#848484'}}>{store.address}</div>
