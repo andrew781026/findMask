@@ -27,3 +27,5 @@ yarn-error.log*
 
 # firebase
 .firebase
+
+/src/configs/googleMapConfig.js
