@@ -14,7 +14,7 @@ UI 設計 - https://projects.invisionapp.com/share/X6VVKDJSR8W#/screens/40395894
 
 ## 其他 
 
-地圖說明影片 - https://youtu.be/pUizu62dlnY
+[Leaflet + OpenStreetMap 地圖應用開發影片](https://youtu.be/pUizu62dlnY)
 
 https://kuro.tw/mask-map/
 

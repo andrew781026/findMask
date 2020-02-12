@@ -1,0 +1,45 @@
+.content {
+    position: fixed;
+    margin-bottom: 100px;
+    height: calc(100vh - 8.0rem);
+    width: calc(100vw - 270px);
+    top: 8.0rem;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.redCircle {
+    position: relative;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+}
+
+.redCircle .tooltiptext {
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.redCircle .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}

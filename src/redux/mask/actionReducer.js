@@ -1,48 +1,34 @@
 import {getReduxDispatch, getReduxState} from "../@createStore";
 
+import medicalStores from 'assets/maskdata.json';
+
 const ActionType = {
-    SET_CUSTOMER_DATA: '[CUSTOMER] SET_CUSTOMER_DATA',
-    SET_SINGLE_CUSTOMER: '[CUSTOMER] SET_SINGLE_CUSTOMER',
+    SET_MASK_DATA: '[MASK] SET_MASK_DATA',
 };
 
 const ActionCreator = {
-    setCustomerData(customerData) {
+    setMaskData(maskData) {
         return {
-            type: ActionType.SET_CUSTOMER_DATA,
-            Data: customerData
-        }
-    },
-    setSingleCustomer(customer) {
-        return {
-            type: ActionType.SET_SINGLE_CUSTOMER,
-            Data: customer
+            type: ActionType.SET_MASK_DATA,
+            Data: maskData
         }
     },
 };
 
 const Selector = {
-    getCustomerData: (state) => state.Customer.customerData,
-    getSingleCustomer: (state) => state.Customer.singleCustomer,
+    getMaskData: (state) => state.Mask.maskData,
 };
 
 const initialState = {
-    customerData: [],
-    queryInfo: {},
-    singleCustomer: {}
+    maskData: medicalStores.features,
 };
 
 const Reducer = function (state = initialState, action) {
     switch (action.type) {
-        case ActionType.SET_CUSTOMER_DATA: {
+        case ActionType.SET_MASK_DATA: {
             return {
                 ...state,
-                customerData: action.Data,
-            };
-        }
-        case ActionType.SET_SINGLE_CUSTOMER: {
-            return {
-                ...state,
-                singleCustomer: action.Data,
+                maskData: action.Data,
             };
         }
         default: {
@@ -51,31 +37,9 @@ const Reducer = function (state = initialState, action) {
     }
 };
 
-const Transformer = {
+const Transformer = {};
 
-    CustomerFromApi(data) {
-
-        return (data || []).map(item => ({
-            ...item,
-            code: item.id,
-            show: item.name,
-            user: item.userId,
-            userObj: {
-                id: item.userId,
-                username: item.userName,
-                code: item.userId,
-                show: item.userName,
-            }
-        }));
-    },
-
-};
-
-const AsyncMethods = {
-
-
-
-};
+const AsyncMethods = {};
 
 const ReduxCustomer = {ActionType, ActionCreator, Reducer, Selector, AsyncMethods};
 

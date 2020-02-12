@@ -16,4 +16,3 @@ const MedicalStoreService = {
 };
 
 export default MedicalStoreService;
-
