@@ -9,37 +9,66 @@
     overflow: auto;
 }
 
-.redCircle {
-    position: relative;
-    background-color: red;
-    height: 20px;
-    width: 20px;
-    border-radius: 10px;
+.adult_mask {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex: 1;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #06b66c;
+    font-size: 12px;
 }
 
-.redCircle .tooltiptext {
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
+.children_mask {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    flex: 1;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #faa23f;
+    font-size: 12px;
+}
+
+.card_root {
+    width: 300px;
+    background-color: #fff;
     border-radius: 6px;
-    padding: 5px 0;
+    border: 1px solid rgba(0,0,0,0.3);
 
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 100%;
+    bottom: calc(100% + 10px);
     left: 50%;
-    margin-left: -60px;
+    margin-left: -150px;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.redCircle .tooltiptext::after {
+.text_root{
+    padding: 8px 14px 8px 14px; /* (top, right, bottom, and left) */
+}
+
+.marker {
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+    border: 6px solid #e9514d;
+    width: 10px;
+    height: 10px;
+    transform: translate(-8px,-30px);
+}
+
+/* 三角形生成器 : http://apps.eky.hk/css-triangle-generator/ */
+.marker::after {
     content: " ";
     position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    top: calc(100% + 1px); /* At the bottom of the tooltip */
+    margin-left: -4.5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-width: 20px 10px 0 9.5px;
+    border-color: #e9514d transparent transparent transparent;
 }

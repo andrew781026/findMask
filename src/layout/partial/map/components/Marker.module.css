@@ -1,0 +1,20 @@
+.marker {
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+    border: 6px solid #e9514d;
+    width: 10px;
+    height: 10px;
+    transform: translate(-8px,-30px);
+}
+
+/* 三角形生成器 : http://apps.eky.hk/css-triangle-generator/ */
+.marker::after {
+    content: " ";
+    position: absolute;
+    top: calc(100% + 1px); /* At the bottom of the tooltip */
+    margin-left: -4.5px;
+    border-style: solid;
+    border-width: 20px 10px 0 9.5px;
+    border-color: #e9514d transparent transparent transparent;
+}

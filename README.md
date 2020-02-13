@@ -25,3 +25,8 @@ https://github.com/CSSEGISandData/2019-nCoV
 https://mtwmt.github.io/maskmap/
 
 共筆文件：https://quip.com/vdqYAiFHHkaV
+
+## 武漢肺炎地圖 
+
+台灣版儀錶板 https://viator.maps.arcgis.com/apps/opsdashboard/index.html#/bbd3dfeeec9c494daf178457c7b74c3e
+( 使用工具 - [Operations Dashboard for ArcGIS](https://www.esriuk.com/en-gb/arcgis/products/operations-dashboard/overview) )

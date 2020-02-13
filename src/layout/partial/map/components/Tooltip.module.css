@@ -1,0 +1,60 @@
+
+.adult_mask {
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #06b66c;
+}
+
+.children_mask {
+    border-bottom-right-radius: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    color: #fdfdfe;
+    padding: 8px;
+    background-color: #faa23f;
+}
+
+.text_name {
+    color: #848484;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.text_address {
+    color: #ababab;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.time_letter,
+.phone_letter {
+    color: #ababab;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.card_root {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    margin-left: -150px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.text_root {
+    padding: 8px 14px 8px 14px; /* (top, right, bottom, and left) */
+}
