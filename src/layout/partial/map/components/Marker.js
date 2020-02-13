@@ -4,7 +4,7 @@ import Styles from "./Marker.module.css";
 class Marker extends React.Component {
 
     state = {
-        showTooltip: true
+        showTooltip: false
     };
 
     toggleTooltip = () => this.setState({showTooltip: !this.state.showTooltip});
