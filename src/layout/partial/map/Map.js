@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import Styles from './Map.module.css';
 import Simple from "layout/partial/map/Simple";
 
@@ -6,11 +7,14 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 
+import reactElementToJSXString from 'react-element-to-jsx-string';
+
 // redux
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import ReduxMap from "redux/map/actionReducer";
 import ReduxMask from "redux/mask/actionReducer";
+import Tooltip from "./components/Tooltip";
 
 /*
 const Map = () => (
@@ -50,33 +54,6 @@ class SimpleExample extends React.Component {
             zoomOffset: -1,
         }).addTo(map);
 
-        // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
-        const greenIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-
-        const goldIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-
-        const redIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
 
         // we can use differ color present the left amount of mask ( user can pick finding mask_adult or mask_child )
 
@@ -84,9 +61,9 @@ class SimpleExample extends React.Component {
         // 1 ~ 30 => gold
         // 31 ~ => green
 
-        const marker = L.marker([25.034180, 121.564517], {icon: greenIcon}).addTo(map);
-        const marker1 = L.marker([25.03117377, 121.5562963], {icon: redIcon}).addTo(map);
-        const marker2 = L.marker([25.032960, 121.5721783], {icon: goldIcon}).addTo(map);
+        const marker = L.marker([25.034180, 121.564517], {icon: this.getIcon()}).addTo(map);
+        const marker1 = L.marker([25.03117377, 121.5562963], {icon: this.getIcon('red')}).addTo(map);
+        const marker2 = L.marker([25.032960, 121.5721783], {icon: this.getIcon('gold')}).addTo(map);
 
         marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
@@ -95,23 +72,24 @@ class SimpleExample extends React.Component {
             const latlng = map.getCenter();
             this.setState({lat: latlng.lat, lng: latlng.lng});
             this.props.actions.setMapCenter(latlng);
-
-            // if (++i < 3) map.flyTo([-25.034180, -121.564517]);
         });
 
         this.layerGroup = L.layerGroup().addTo(map);
 
-        /*
-        const circle = L.circle([25.034180, 121.564517], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.3,
-            radius: 5 * 1000 // Radius of the circle, in meters.
-        }).addTo(map);
-
-         */
-
     }
+
+    getIcon = (color = 'green') => {
+
+        // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
+        return new L.Icon({
+            iconUrl: `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+    };
 
     componentDidUpdate(prevProps) {
 
@@ -144,25 +122,49 @@ class SimpleExample extends React.Component {
     renderMarker = () => {
 
         // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
-        const greenIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
+        const greenIcon = this.getIcon('green');
 
         const medicalStores = this.getMedicalStores();
 
         // remove all the markers in one go
         this.layerGroup.clearLayers();
 
+        // react-element-to-jsx-string => the popUp content may use this
         medicalStores.forEach(store => {
-
-            L.marker([store.lat, store.lng], {icon: greenIcon}).addTo(this.layerGroup);
+            const marker = L.marker([store.lat, store.lng], {icon: greenIcon}).addTo(this.layerGroup);
+            const content = ReactDOMServer.renderToString(<Tooltip medicalStore={store}/>);  // 將 react-element 轉換成 html-string
+            marker.bindPopup(content, {className: 'popupCustom'});
         });
 
+    };
+
+    renderPopup = () => {
+
+        /*
+        <style>
+        .popupCustom .leaflet-popup-tip,
+        .popupCustom .leaflet-popup-content-wrapper {
+                background: #e0e0e0;
+                color: #234c5e;
+            }
+        </style>
+
+        // create popup contents
+        var customPopup = "<b>My office</b><br/><img src='http://netdna.webdesignerdepot.com/uploads/2014/05/workspace_06_previo.jpg' alt='maptime logo gif' width='150px'/>";
+
+        // specify popup options
+        var customOptions =
+            {
+            'maxWidth': '400',
+            'width': '200',
+            'className' : 'popupCustom'
+            }
+
+        var marker = L.marker([lat, lng], {icon: myIcon}).addTo(map);
+
+        // bind the custom popup
+        marker.bindPopup(customPopup,customOptions);
+         */
     };
 
     render() {

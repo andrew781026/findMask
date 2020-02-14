@@ -17,6 +17,7 @@
     "query-string": "^6.10.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-element-to-jsx-string": "^14.3.1",
     "react-favicon": "^0.0.17",
     "react-geolocated": "^3.0.1",
     "react-helmet": "^5.2.1",
