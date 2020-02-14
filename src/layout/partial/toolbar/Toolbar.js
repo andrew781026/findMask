@@ -52,13 +52,15 @@ const Toolbar = (props) => (
                     {getText(8)}
                 </div>
 
-                <div className={Styles.tooltip}>
-                    <div className={Styles.tooltip_span}>請輸入您的身份證字號尾碼</div>
-                    <div>
-                        <input type="text" className={Styles.input}/>
-                        <button className={Styles.tooltip_button}>儲存</button>
+                {false && (
+                    <div className={Styles.tooltip}>
+                        <div className={Styles.tooltip_span}>請輸入您的身份證字號尾碼</div>
+                        <div>
+                            <input type="text" className={Styles.input}/>
+                            <button className={Styles.tooltip_button}>儲存</button>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
         </div>

@@ -45,6 +45,7 @@ import ReduxMask from "redux/mask/actionReducer";
  */
 
 class SimpleMap extends Component {
+
     static defaultProps = {
         center: {
             lat: 25.034180,
