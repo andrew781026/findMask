@@ -1,6 +1,6 @@
 import {getReduxDispatch, getReduxState} from "../@createStore";
 
-import medicalStores from 'assets/maskdata.json';
+import MaskService from 'fetch/MedicalStore';
 
 const ActionType = {
     SET_MASK_DATA: '[MASK] SET_MASK_DATA',
@@ -20,7 +20,7 @@ const Selector = {
 };
 
 const initialState = {
-    maskData: medicalStores.features,
+    maskData: [],
 };
 
 const Reducer = function (state = initialState, action) {
@@ -39,7 +39,19 @@ const Reducer = function (state = initialState, action) {
 
 const Transformer = {};
 
-const AsyncMethods = {};
+const AsyncMethods = {
+
+    async getMaskData() {
+
+        const dispatch = getReduxDispatch();
+
+        const maskData = await MaskService.getStores();
+        dispatch(ActionCreator.setMaskData(maskData.features));
+
+        return maskData;
+    },
+
+};
 
 const ReduxCustomer = {ActionType, ActionCreator, Reducer, Selector, AsyncMethods};
 

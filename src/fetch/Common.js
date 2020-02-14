@@ -1,8 +1,4 @@
-import queryString from "query-string";
-
-let apiToken;
-// let currentLocale = "zh-tw";
-let localStorage = window.localStorage;
+import Axios from "axios";
 
 class DomainCommon {
 
@@ -31,93 +27,41 @@ class DomainCommon {
         return _fetch({url, resolve, reject, method: 'DELETE', params, data: jsonBody, timeout});
     }
 
-    static setAPIToken(accessToken = undefined) {
-        apiToken = accessToken;
-        localStorage.setItem('accessToken', accessToken);
-    }
-
-    static clearAPIToken() {
-        apiToken = undefined;
-        localStorage.removeItem("accessToken");
-    }
-
-    static getAPIToken() {
-        return apiToken;
-    }
-
 }
 
-async function _fetch({url, method, params, data, optionHeaders = {}, resolve, reject}) {
-
-    let options = method ? {method} : {};
-    options = data ?
-        Object.assign(options, {body: JSON.stringify(data)}) :
-        options;
-
-    // set apiTokenHeader if available
-    options.headers = {
-        ...optionHeaders,
-        // ...getApiTokenHeader(),
-        mode: 'no-cors',
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        // 'Accept-Language': getDefaultLanguage() // currentLocale,
-    };
-
-    // console.log('apiToken=', apiToken);
-    // console.log('options=', options);
-
+// timeout 預設為 3 秒
+async function _fetch({headers = {}, url, params, data, method, timeout = 3 * 1000, baseURL = 'http://localhost:8009', resolve, reject}) {
     try {
 
-        const stringifyStr = queryString.stringify(params); //=> 'foo=unicorn&like=pizza'
-        const tempUrl = params ? `${url}?${stringifyStr}` : url;
+        const isUrlAll = url.startsWith("http");
 
-        let response = await fetch(tempUrl, options);
+        let response = await Axios({
+            method,
+            url,
+            baseURL: isUrlAll ? undefined : baseURL,
+            headers,
+            params,  // params is the data at query string
+            data,   // data is the data at request body
+            timeout
+        });
 
-        if (check2XXStatus(response.status)) {
-            if (response.status === 204) {
-                resolve({});
-            } else {
-                try {
-                    let responseJson = await response.json();
-
-                    // if response.body.status out of 2XX , API validate value failed ( ex: data already have )
-                    if (responseJson && !check2XXStatus(responseJson.status)) reject(responseJson);
-                    else resolve(responseJson);
-
-                } catch (e) {
-                    console.error(e);
-
-                    reject(e);
-                }
-            }
-        } else {
+        if (response.status === 204) // 204 No Content , 參考網址 : https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/204
+            resolve({});
+        else {
             try {
-                let responseJson = await response.json();
-                if (responseJson.status === 401) {
-                    // redirect to login page
-                    // eventEmitter.emit('API-401');
-                    reject({...responseJson, status: response.status});
-                } else reject({...responseJson, status: response.status});
+                let responseJson = await response.data; // the response body is response.data
+                resolve(responseJson);
+
             } catch (e) {
-                //avoid response data can't serialization to json
-                console.error(e);
-                reject({status: response.status});
+                resolve({});
             }
         }
+
     } catch (e) {
-        console.error(e);
+
+        // Axios get error when response.status out of the range of 2xx
         reject(e);
     }
-}
-
-function check2XXStatus(status) {
-    return status >= 200 && status < 300;
-}
-
-function getApiTokenHeader() {
-    return {Authorization: apiToken && `Bearer ${apiToken}`};
 }
 
 export default DomainCommon;

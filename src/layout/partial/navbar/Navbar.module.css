@@ -40,9 +40,18 @@
 }
 
 .card_root {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     padding: 8px 14px 8px 14px; /* (top, right, bottom, and left) */
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.card_root:hover {
+    background-color: #e6e6e8;
+}
+
+.card_root:active {
+    background-color: #bcc1c5;
 }
 
