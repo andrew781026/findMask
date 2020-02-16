@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Styles from './Map.module.css';
-import Simple from "layout/partial/map/Simple";
 
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
-
-import reactElementToJSXString from 'react-element-to-jsx-string';
 
 // redux
 import {connect} from "react-redux";
@@ -15,16 +11,6 @@ import {bindActionCreators} from 'redux';
 import ReduxMap from "redux/map/actionReducer";
 import ReduxMask from "redux/mask/actionReducer";
 import Tooltip from "./components/Tooltip";
-
-/*
-const Map = () => (
-    <div className={Styles.content}>
-        <Simple/>
-    </div>
-);
-
- */
-
 
 // 參考資料 : https://leafletjs.com/examples/quick-start/ & https://juejin.im/post/5cc192976fb9a032092e8e0a
 class SimpleExample extends React.Component {
@@ -53,7 +39,6 @@ class SimpleExample extends React.Component {
             tileSize: 512,
             zoomOffset: -1,
         }).addTo(map);
-
 
         // we can use differ color present the left amount of mask ( user can pick finding mask_adult or mask_child )
 
@@ -129,42 +114,12 @@ class SimpleExample extends React.Component {
         // remove all the markers in one go
         this.layerGroup.clearLayers();
 
-        // react-element-to-jsx-string => the popUp content may use this
         medicalStores.forEach(store => {
             const marker = L.marker([store.lat, store.lng], {icon: greenIcon}).addTo(this.layerGroup);
             const content = ReactDOMServer.renderToString(<Tooltip medicalStore={store}/>);  // 將 react-element 轉換成 html-string
             marker.bindPopup(content, {className: 'popupCustom'});
         });
 
-    };
-
-    renderPopup = () => {
-
-        /*
-        <style>
-        .popupCustom .leaflet-popup-tip,
-        .popupCustom .leaflet-popup-content-wrapper {
-                background: #e0e0e0;
-                color: #234c5e;
-            }
-        </style>
-
-        // create popup contents
-        var customPopup = "<b>My office</b><br/><img src='http://netdna.webdesignerdepot.com/uploads/2014/05/workspace_06_previo.jpg' alt='maptime logo gif' width='150px'/>";
-
-        // specify popup options
-        var customOptions =
-            {
-            'maxWidth': '400',
-            'width': '200',
-            'className' : 'popupCustom'
-            }
-
-        var marker = L.marker([lat, lng], {icon: myIcon}).addTo(map);
-
-        // bind the custom popup
-        marker.bindPopup(customPopup,customOptions);
-         */
     };
 
     render() {

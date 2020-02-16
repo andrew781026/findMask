@@ -14,6 +14,10 @@ UI 設計 - https://projects.invisionapp.com/share/X6VVKDJSR8W#/screens/40395894
 
 ## 其他 
 
+### 第一次分享 - Leaflet + OpenStreetMap (OSM) 特訓班
+
+共筆文件：https://quip.com/vdqYAiFHHkaV
+
 [Leaflet + OpenStreetMap 地圖應用開發影片](https://youtu.be/pUizu62dlnY)
 
 https://kuro.tw/mask-map/
@@ -24,7 +28,16 @@ https://github.com/CSSEGISandData/2019-nCoV
 
 https://mtwmt.github.io/maskmap/
 
-共筆文件：https://quip.com/vdqYAiFHHkaV
+
+### 第二次分享 - 卡斯伯老師分享 Vue.js + 地圖應用的直播分享
+
+共享筆記 : https://paper.dropbox.com/doc/2020-0213-2XPGbqH5JqE9vTD7a6npd
+
+https://g0v.hackmd.io/@kiang/mask-info
+
+VsCode 套件 - Bracket Pair Colorizer 2
+
+https://mask.goodideas-studio.com/
 
 ## 武漢肺炎地圖 
 

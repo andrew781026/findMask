@@ -1,8 +1,11 @@
 
-.popupCustom .leaflet-popup-tip,
+.popupCustom .leaflet-popup-tip {
+    display: none;
+}
+
 .popupCustom .leaflet-popup-content-wrapper {
-    background: #9d3426;
-    color: #fdfdfe;
+    background: transparent;
+    color: transparent;
 }
 
 .popupCustom .leaflet-popup-content-wrapper .leaflet-popup-content {

@@ -16,11 +16,9 @@ import './styles/map.css';
 import './styles/tailwind.css';
 
 const element = (
-    <>
-        <Provider store={createStore()}>
-            <App/>
-        </Provider>
-    </>
+    <Provider store={createStore()}>
+        <App/>
+    </Provider>
 );
 
 ReactDOM.render(element, document.getElementById('root'));
