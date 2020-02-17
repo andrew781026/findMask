@@ -2,6 +2,7 @@ import {getReduxDispatch, getReduxState} from "../@createStore";
 
 const ActionType = {
     SET_MAP_CENTER: '[MAP] SET_MAP_CENTER',
+    SET_DISTANCE: '[MAP] SET_DISTANCE',
 };
 
 const ActionCreator = {
@@ -11,10 +12,17 @@ const ActionCreator = {
             Data: center
         }
     },
+    setDistance(distance) {
+        return {
+            type: ActionType.SET_DISTANCE,
+            Data: distance
+        }
+    },
 };
 
 const Selector = {
     getMapCenter: (state) => state.Map.mapCenter,
+    getDistance: (state) => state.Map.distance,
 };
 
 const initialState = {
@@ -22,6 +30,10 @@ const initialState = {
         lat: 25.034180,
         lng: 121.564517,
     },
+    distance: {
+        meter: 5 * 1000
+    },
+    maskType: '' // maskType : adult . child
 };
 
 const Reducer = function (state = initialState, action) {
@@ -30,6 +42,12 @@ const Reducer = function (state = initialState, action) {
             return {
                 ...state,
                 mapCenter: action.Data,
+            };
+        }
+        case ActionType.SET_DISTANCE: {
+            return {
+                ...state,
+                distance: action.Data,
             };
         }
         default: {

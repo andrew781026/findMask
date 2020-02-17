@@ -1,0 +1,52 @@
+.root {
+    position: fixed;
+    top: 8.0rem;
+    left: 270px;
+    z-index: 20;
+    font-weight: 900;
+    color: #fdfdf2;
+    padding: 10px;
+    background-color: #fdfdf2;
+    border-right: 1px solid #000001;
+    border-bottom: 1px solid #000001;
+}
+
+.all_type {
+    background-color: #277fc9;
+    width: 100px;
+    border: 1px solid #000001;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.many_mask {
+    background-color: #26ac23;
+    width: 100px;
+    border: 1px solid #000001;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.less_mask {
+    background-color: #fdd226;
+    width: 100px;
+    border: 1px solid #000001;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no_mask {
+    background-color: #ca2d40;
+    width: 100px;
+    border: 1px solid #000001;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,7 +1,9 @@
+// react
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Styles from './Map.module.css';
 
+// leaflet
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -17,6 +19,7 @@ class SimpleExample extends React.Component {
 
     map = null;
     layerGroup = null;
+    icons = {};
 
     state = {
         lat: 25.034180,
@@ -30,8 +33,6 @@ class SimpleExample extends React.Component {
 
         const map = L.map('mapid').setView([this.state.lat, this.state.lng], this.state.zoom);
 
-        this.map = map;
-
         const OSMUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
         L.tileLayer(OSMUrl, {
@@ -40,18 +41,6 @@ class SimpleExample extends React.Component {
             zoomOffset: -1,
         }).addTo(map);
 
-        // we can use differ color present the left amount of mask ( user can pick finding mask_adult or mask_child )
-
-        // 0 => red
-        // 1 ~ 30 => gold
-        // 31 ~ => green
-
-        const marker = L.marker([25.034180, 121.564517], {icon: this.getIcon()}).addTo(map);
-        const marker1 = L.marker([25.03117377, 121.5562963], {icon: this.getIcon('red')}).addTo(map);
-        const marker2 = L.marker([25.032960, 121.5721783], {icon: this.getIcon('gold')}).addTo(map);
-
-        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
         map.on('moveend', (e) => {
 
             const latlng = map.getCenter();
@@ -59,35 +48,46 @@ class SimpleExample extends React.Component {
             this.props.actions.setMapCenter(latlng);
         });
 
-        this.layerGroup = L.layerGroup().addTo(map);
+        // 計算 5 km 內的藥局 , 並顯示之
 
+        this.map = map;
+        this.layerGroup = L.layerGroup().addTo(map); // add layerGroup for markers with clearLayers
     }
-
-    getIcon = (color = 'green') => {
-
-        // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
-        return new L.Icon({
-            iconUrl: `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-    };
 
     componentDidUpdate(prevProps) {
 
-        // 常見用法（別忘了比較 prop）：
-        if (this.props.center.fly && this.map) {
-            this.map.flyTo(this.props.center, 16);
+        if (this.map) {
+            if (this.props.center.fly) this.map.flyTo(this.props.center, 16);
             this.renderMarker(this.map);
         }
     }
 
+    getIcon = (color = 'green') => {
+
+        const icon = this.icons[color];
+
+        if (icon) return icon;
+        else {
+
+            // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
+            const newIcon = new L.Icon({
+                iconUrl: `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            this.icons[color] = newIcon;
+            return newIcon;
+        }
+
+    };
+
     getMedicalStores = () => {
 
-        const medicalStores = this.props.maskData.map(mask => ({
+        const medicalStores = this.props.nearByMasks.map(mask => ({
             lat: mask.geometry.coordinates[1],
             lng: mask.geometry.coordinates[0],
             ...mask.properties,
@@ -101,13 +101,36 @@ class SimpleExample extends React.Component {
             },
         }));
 
-        return medicalStores.slice(0, 50);
+        return medicalStores;
     };
 
-    renderMarker = () => {
+    getMarker = (store) => {
 
         // 使用 leaflet-color-markers ( https://github.com/pointhi/leaflet-color-markers ) 當作 marker
         const greenIcon = this.getIcon('green');
+        const goldIcon = this.getIcon('gold');
+        const redIcon = this.getIcon('red');
+
+        // we can use differ color present the left amount of mask ( user can pick finding mask_adult or mask_child )
+
+        // 0 => red
+        // 1 ~ 30 => gold
+        // 31 ~ => green
+
+        const mask_adult = store.leftMask.adult;
+        const mask_child = store.leftMask.children;
+
+        const getIcon = (maskAmount) => {
+
+            if (maskAmount > 30) return greenIcon;
+            else if (maskAmount <= 30 && maskAmount > 0) return goldIcon;
+            else return redIcon;
+        };
+
+        return L.marker([store.lat, store.lng], {icon: getIcon(mask_adult)});
+    };
+
+    renderMarker = () => {
 
         const medicalStores = this.getMedicalStores();
 
@@ -115,7 +138,7 @@ class SimpleExample extends React.Component {
         this.layerGroup.clearLayers();
 
         medicalStores.forEach(store => {
-            const marker = L.marker([store.lat, store.lng], {icon: greenIcon}).addTo(this.layerGroup);
+            const marker = this.getMarker(store).addTo(this.layerGroup);
             const content = ReactDOMServer.renderToString(<Tooltip medicalStore={store}/>);  // 將 react-element 轉換成 html-string
             marker.bindPopup(content, {className: 'popupCustom'});
         });
@@ -135,6 +158,7 @@ class SimpleExample extends React.Component {
 const mapStateToProps = state => ({
     center: ReduxMap.Selector.getMapCenter(state),
     maskData: ReduxMask.Selector.getMaskData(state),
+    nearByMasks: ReduxMask.Selector.getNearByMasks(state),
 });
 
 const mapDispatchToProps = (dispatch) => {

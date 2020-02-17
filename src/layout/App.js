@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from './partial/navbar/Navbar';
 import Footer from "./partial/footer/Footer";
 import Toolbar from "./partial/toolbar/Toolbar";
+import Hint from "./partial/hint/Hint";
 import GoogleMap from "./partial/map/Map";
 
 const App = (props) => {
@@ -13,6 +14,7 @@ const App = (props) => {
 
             <Toolbar/>
             <Footer/>
+            <Hint/>
 
             <Navbar/>
 

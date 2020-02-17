@@ -89,11 +89,9 @@ class Navbar extends React.Component {
         setMapCenter({lat, lng, fly: true});
     };
 
-    render() {
+    getMedicalStores = () => {
 
-        const props = this.props;
-
-        const medicalStores = this.props.maskData.map(mask => ({
+        const medicalStores = this.props.nearByMasks.map(mask => ({
             lat: mask.geometry.coordinates[1],
             lng: mask.geometry.coordinates[0],
             ...mask.properties,
@@ -107,27 +105,25 @@ class Navbar extends React.Component {
             },
         }));
 
-        const newMedicalStores = medicalStores.slice(0, 50);
+        return medicalStores;
+    };
+
+    render() {
+
+        const props = this.props;
+
+        const newMedicalStores = this.getMedicalStores();
 
         return (
             <div className={Styles.content}>
 
                 <div className={Styles.search_root}>
-                    {/* 目前地圖視角之中心位置 */}
-                    <div>中心位置</div>
-                    <div className='flex'>
-                        <span>lat：</span>
-                        <input className='flex-1' value={props.center.lat}/>
-                    </div>
-                    <div className='flex'>
-                        <span>lng：</span>
-                        <input className='flex-1' value={props.center.lng}/>
-                    </div>
-                    <div className='mt-12'>距離</div>
+                    <div>距離</div>
                     <DropDown
                         value={1}
                         data={[
-                            {value: 1, label: '5km'}
+                            {value: 1, label: '5km'},
+                            {value: 2, label: '10km'},
                         ]}
                     />
                     <div className='mt-12'>口罩類別</div>
@@ -139,14 +135,10 @@ class Navbar extends React.Component {
                             {value: 3, label: '成人與兒童'},
                         ]}
                     />
-                    <Button fullWidth variant="contained" color="primary"
-                            style={{backgroundColor: '#06b66c', marginTop: '10px'}}>
-                        搜尋
-                    </Button>
                 </div>
 
                 <div className='px-8 py-4'>
-                    共 5 家可買口罩
+                    共 {newMedicalStores ? newMedicalStores.length : 0} 家可買口罩
                 </div>
 
                 {
@@ -186,6 +178,7 @@ class Navbar extends React.Component {
 const mapStateToProps = state => ({
     center: ReduxMap.Selector.getMapCenter(state),
     maskData: ReduxMask.Selector.getMaskData(state),
+    nearByMasks: ReduxMask.Selector.getNearByMasks(state),
 });
 
 const mapDispatchToProps = (dispatch) => {
