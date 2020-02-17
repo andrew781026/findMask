@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "913c1bd2aac98a3e99d3aba855871ec0",
+    "revision": "1c9056b295f4083ddd64cb0f843c83d0",
     "url": "/findMask/index.html"
   },
   {
-    "revision": "1e0e02edede765ac0ea6",
+    "revision": "09e82e198db5813147a5",
     "url": "/findMask/static/css/2.7f75bbe2.chunk.css"
   },
   {
-    "revision": "e7c21406ddb177cde1e4",
-    "url": "/findMask/static/css/main.b5312f2a.chunk.css"
+    "revision": "1b5fdeadc55ab6788318",
+    "url": "/findMask/static/css/main.ed9c13e2.chunk.css"
   },
   {
-    "revision": "1e0e02edede765ac0ea6",
-    "url": "/findMask/static/js/2.bdd3cd01.chunk.js"
+    "revision": "09e82e198db5813147a5",
+    "url": "/findMask/static/js/2.86dacbf9.chunk.js"
   },
   {
     "revision": "ed0e5755db3633738d1f774b733029b7",
-    "url": "/findMask/static/js/2.bdd3cd01.chunk.js.LICENSE.txt"
+    "url": "/findMask/static/js/2.86dacbf9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e7c21406ddb177cde1e4",
-    "url": "/findMask/static/js/main.16ceddbb.chunk.js"
+    "revision": "1b5fdeadc55ab6788318",
+    "url": "/findMask/static/js/main.329e9289.chunk.js"
   },
   {
     "revision": "6b15fb0d592d220643e3",
@@ -30,6 +30,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e91002739bb57a0b595cd1c4faa49935",
     "url": "/findMask/static/media/adult-face.e9100273.svg"
+  },
+  {
+    "revision": "02e4973d35742312f495f370e20e49b1",
+    "url": "/findMask/static/media/bulletin.02e4973d.jpg"
   },
   {
     "revision": "4856657c04170ee05335a12d907c1140",
