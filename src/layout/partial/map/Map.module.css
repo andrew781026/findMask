@@ -9,6 +9,12 @@
     overflow: auto;
 }
 
+@media (max-width: 768px) {
+    .content {
+        width: 100vw;
+    }
+}
+
 .adult_mask {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;

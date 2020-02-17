@@ -3,11 +3,42 @@
     top: 8.0rem;
     bottom: 0;
     left: 0;
+    background-color: white;
     min-height: calc(100vh - 8.0rem);
     max-height: calc(100vh - 8.0rem);
     width: 270px;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .content {
+        min-height: 100vh;
+        max-height: 100vh;
+        top: 0;
+    }
+}
+
+.setting {
+    z-index: 20;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting:hover {
+    background-color: #e6e6e8;
+}
+
+.setting:active {
+    background-color: #bcc1c5;
 }
 
 .adult_mask {

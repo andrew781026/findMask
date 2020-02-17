@@ -1,4 +1,6 @@
 import React from "react";
+
+// css
 import Styles from './Navbar.module.css';
 import DropDown from './DropDown';
 
@@ -11,8 +13,12 @@ import ReduxMask from "redux/mask/actionReducer";
 // assets
 import phoneSvg from 'assets/phone-solid.svg';
 import bigPhoneSvg from 'assets/phone.svg';
+import settingSvg from 'assets/setting.svg';
 
-class Navbar extends React.Component {
+// material-ui
+import {Hidden, SwipeableDrawer} from "@material-ui/core";
+
+class MdNavbar extends React.Component {
 
     handleClick = (store, setMapCenter) => event => {
 
@@ -53,17 +59,19 @@ class Navbar extends React.Component {
                 <div className={Styles.search_root}>
                     <div>距離</div>
                     <DropDown
-                        value={3}
+                        value={2}
                         data={[
                             {value: 1, label: '100m'},
                             {value: 2, label: '500m'},
-                            {value: 3, label: '5km'},
+                            {value: 3, label: '1km'},
+                            {value: 4, label: '3km'},
                         ]}
                         onChange={(newValue) => {
 
                             if (newValue === 1) setDistance({meter: 100});
                             else if (newValue === 2) setDistance({meter: 500});
-                            else if (newValue === 3) setDistance({meter: 5 * 1000});
+                            else if (newValue === 3) setDistance({meter: 1000});
+                            else if (newValue === 4) setDistance({meter: 3 * 1000});
                         }}
                     />
                     <div className='mt-12'>口罩類別</div>
@@ -135,8 +143,43 @@ class Navbar extends React.Component {
     }
 }
 
+class LeftDrawer extends React.Component {
+
+    toggleDrawer = () => this.props.actions.toggleDrawer();
+
+    render() {
+
+        return (
+            <SwipeableDrawer
+                anchor="left"
+                open={this.props.drawerOpen}
+                onOpen={this.toggleDrawer}
+                onClose={this.toggleDrawer}
+            >
+                <MdNavbar {...this.props}/>
+            </SwipeableDrawer>
+        )
+    }
+}
+
+const Navbar = (props) => (
+    <>
+        <Hidden xsDown>
+            <MdNavbar {...props}/>
+        </Hidden>
+        <Hidden smUp>
+            <LeftDrawer {...props}/>
+            <div className={Styles.setting} onClick={() => setTimeout(props.actions.toggleDrawer, 100)}>
+                <img src={settingSvg} height='20px' alt="設定"/>
+            </div>
+        </Hidden>
+    </>
+);
+
+
 const mapStateToProps = state => ({
     center: ReduxMap.Selector.getMapCenter(state),
+    drawerOpen: ReduxMap.Selector.getDrawerOpen(state),
     maskData: ReduxMask.Selector.getMaskData(state),
     nearByMasks: ReduxMask.Selector.getNearByMasks(state),
 });
@@ -146,6 +189,7 @@ const mapDispatchToProps = (dispatch) => {
         setMapCenter: ReduxMap.ActionCreator.setMapCenter,
         setDistance: ReduxMap.ActionCreator.setDistance,
         setMaskType: ReduxMap.ActionCreator.setMaskType,
+        toggleDrawer: ReduxMap.ActionCreator.toggleDrawer,
     };
 
     return {

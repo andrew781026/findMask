@@ -1,5 +1,8 @@
 import React from "react";
 
+// material-ui
+import {Hidden} from '@material-ui/core';
+
 // css
 import Styles from './Toolbar.module.css';
 
@@ -46,17 +49,19 @@ const Toolbar = (props) => (
             <div className='text-xl my-4'>02/10(一)</div>
             <div className='font-500' style={{fontSize: '12px'}}>如今日購買，下次最快可購買日為02/17(一)</div>
         </div>
-        <div className={Styles.right_content}>
-            <div className='flex-col flex-1 text-white mt-4 mx-8'>
-                <p className={Styles.right_p}>民眾持本人 「健保卡」 ，每人現購 2 片，7 天內不可重複購買 </p>
-                <p className={Styles.right_p}>可委託親友代為購買，一人限代持一張健保卡 </p>
-                <p className={Styles.right_p}>兒童口罩僅限 12 歲以下兒童健保卡購買</p>
+        <Hidden xsDown>
+            <div className={Styles.right_content}>
+                <div className='flex-col flex-1 text-white mt-4 mx-8'>
+                    <p className={Styles.right_p}>民眾持本人 「健保卡」 ，每人現購 2 片，7 天內不可重複購買 </p>
+                    <p className={Styles.right_p}>可委託親友代為購買，一人限代持一張健保卡 </p>
+                    <p className={Styles.right_p}>兒童口罩僅限 12 歲以下兒童健保卡購買</p>
+                </div>
+                <div className={Styles.link}>
+                    <img src={linkPng} alt='健保署公告連結'/>
+                    <a href={bulletinJpg} className={Styles.link_text}><span>衛服部公告連結</span></a>
+                </div>
             </div>
-            <div className={Styles.link}>
-                <img src={linkPng} alt='健保署公告連結'/>
-                <a href={bulletinJpg} className={Styles.link_text}><span>衛服部公告連結</span></a>
-            </div>
-        </div>
+        </Hidden>
     </div>
 );
 

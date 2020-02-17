@@ -3,6 +3,10 @@
     display: none;
 }
 
+.popupCustom .leaflet-popup-close-button {
+    display: none;
+}
+
 .popupCustom .leaflet-popup-content-wrapper {
     background: transparent;
     color: transparent;
@@ -11,3 +15,5 @@
 .popupCustom .leaflet-popup-content-wrapper .leaflet-popup-content {
     margin: 0;
 }
+
+

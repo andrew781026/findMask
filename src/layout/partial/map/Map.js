@@ -25,8 +25,8 @@ class SimpleExample extends React.Component {
     icons = {};
 
     state = {
-        lat: 25.034180,
-        lng: 121.564517,
+        lat: this.props.center.lat, // 25.034180,
+        lng: this.props.center.lng, //121.554517,
         zoom: 17
     };
 
@@ -60,7 +60,7 @@ class SimpleExample extends React.Component {
     componentDidUpdate(prevProps) {
 
         if (this.map) {
-            if (this.props.center.fly) this.map.flyTo(this.props.center, 16);
+            if (this.props.center.fly) this.map.flyTo(this.props.center, 18);
             this.renderMarker(this.map);
         }
     }
@@ -152,7 +152,13 @@ class SimpleExample extends React.Component {
         medicalStores.forEach(store => {
             const marker = this.getMarker(store).addTo(this.layerGroup);
             const content = ReactDOMServer.renderToString(<Tooltip medicalStore={store}/>);  // 將 react-element 轉換成 html-string
+
             marker.bindPopup(content, {className: 'popupCustom'});
+
+            if (store.lat === this.props.center.lat && store.lng === this.props.center.lng && this.props.center.fly) {
+
+                // setTimeout(() => marker.bindPopup(content, {className: 'popupCustom'}).openPopup(),1800);
+            }
         });
 
     };

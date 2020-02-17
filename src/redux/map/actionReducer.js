@@ -4,6 +4,7 @@ const ActionType = {
     SET_MAP_CENTER: '[MAP] SET_MAP_CENTER',
     SET_DISTANCE: '[MAP] SET_DISTANCE',
     SET_MASK_TYPE: '[MAP] SET_MASK_TYPE',
+    TOGGLE_DRAWER: '[MAP] TOGGLE_DRAWER',
 };
 
 const ActionCreator = {
@@ -25,23 +26,30 @@ const ActionCreator = {
             Data: maskType
         }
     },
+    toggleDrawer() {
+        return {
+            type: ActionType.TOGGLE_DRAWER
+        }
+    },
 };
 
 const Selector = {
     getMapCenter: (state) => state.Map.mapCenter,
     getDistance: (state) => state.Map.distance,
     getMaskType: (state) => state.Map.maskType,
+    getDrawerOpen: (state) => state.Map.drawerOpen,
 };
 
 const initialState = {
     mapCenter: {
         lat: 25.034180,
-        lng: 121.564517,
+        lng: 121.554517,
     },
     distance: {
-        meter: 5 * 1000
+        meter: 500
     },
-    maskType: 'adult' // maskType : adult . child
+    maskType: 'adult', // maskType : adult . child
+    drawerOpen: false,
 };
 
 const Reducer = function (state = initialState, action) {
@@ -62,6 +70,12 @@ const Reducer = function (state = initialState, action) {
             return {
                 ...state,
                 maskType: action.Data,
+            };
+        }
+        case ActionType.TOGGLE_DRAWER: {
+            return {
+                ...state,
+                drawerOpen: !state.drawerOpen,
             };
         }
         default: {
