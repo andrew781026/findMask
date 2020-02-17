@@ -1,31 +1,32 @@
 {
   "files": {
-    "main.css": "/findMask/static/css/main.b10826b4.chunk.css",
-    "main.js": "/findMask/static/js/main.8329add3.chunk.js",
-    "main.js.map": "/findMask/static/js/main.8329add3.chunk.js.map",
+    "main.css": "/findMask/static/css/main.b9cdc7f9.chunk.css",
+    "main.js": "/findMask/static/js/main.2c81028a.chunk.js",
+    "main.js.map": "/findMask/static/js/main.2c81028a.chunk.js.map",
     "runtime-main.js": "/findMask/static/js/runtime-main.a289539a.js",
     "runtime-main.js.map": "/findMask/static/js/runtime-main.a289539a.js.map",
     "static/css/2.7f75bbe2.chunk.css": "/findMask/static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.f411f65b.chunk.js": "/findMask/static/js/2.f411f65b.chunk.js",
-    "static/js/2.f411f65b.chunk.js.map": "/findMask/static/js/2.f411f65b.chunk.js.map",
+    "static/js/2.e2adebd7.chunk.js": "/findMask/static/js/2.e2adebd7.chunk.js",
+    "static/js/2.e2adebd7.chunk.js.map": "/findMask/static/js/2.e2adebd7.chunk.js.map",
     "index.html": "/findMask/index.html",
-    "precache-manifest.3eeee3a76503729f957b3bc432adb7a8.js": "/findMask/precache-manifest.3eeee3a76503729f957b3bc432adb7a8.js",
+    "precache-manifest.52039579296ec7dd94ac5de95d6e3731.js": "/findMask/precache-manifest.52039579296ec7dd94ac5de95d6e3731.js",
     "service-worker.js": "/findMask/service-worker.js",
     "static/css/2.7f75bbe2.chunk.css.map": "/findMask/static/css/2.7f75bbe2.chunk.css.map",
-    "static/css/main.b10826b4.chunk.css.map": "/findMask/static/css/main.b10826b4.chunk.css.map",
-    "static/js/2.f411f65b.chunk.js.LICENSE.txt": "/findMask/static/js/2.f411f65b.chunk.js.LICENSE.txt",
+    "static/css/main.b9cdc7f9.chunk.css.map": "/findMask/static/css/main.b9cdc7f9.chunk.css.map",
+    "static/js/2.e2adebd7.chunk.js.LICENSE.txt": "/findMask/static/js/2.e2adebd7.chunk.js.LICENSE.txt",
     "static/media/adult-face.svg": "/findMask/static/media/adult-face.e9100273.svg",
     "static/media/bulletin.jpg": "/findMask/static/media/bulletin.02e4973d.jpg",
     "static/media/child-face.svg": "/findMask/static/media/child-face.4856657c.svg",
     "static/media/clock-regular.svg": "/findMask/static/media/clock-regular.54749a5a.svg",
     "static/media/phone-solid.svg": "/findMask/static/media/phone-solid.584f89de.svg",
-    "static/media/phone.svg": "/findMask/static/media/phone.578398ce.svg"
+    "static/media/phone.svg": "/findMask/static/media/phone.578398ce.svg",
+    "static/media/setting.svg": "/findMask/static/media/setting.6f1fd6d2.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a289539a.js",
     "static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.f411f65b.chunk.js",
-    "static/css/main.b10826b4.chunk.css",
-    "static/js/main.8329add3.chunk.js"
+    "static/js/2.e2adebd7.chunk.js",
+    "static/css/main.b9cdc7f9.chunk.css",
+    "static/js/main.2c81028a.chunk.js"
   ]
 }
