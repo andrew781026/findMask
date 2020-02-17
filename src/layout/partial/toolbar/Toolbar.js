@@ -1,8 +1,14 @@
 import React from "react";
+
+// css
 import Styles from './Toolbar.module.css';
-import settingPng from 'assets/setting.png';
+
+// assets
 import linkPng from 'assets/link.png';
+import bulletinJpg from 'assets/bulletin.jpg';
 import calenderPng from 'assets/calender.png';
+
+// moment
 import moment from 'moment';
 
 const getText = (number) => {
@@ -48,7 +54,7 @@ const Toolbar = (props) => (
             </div>
             <div className={Styles.link}>
                 <img src={linkPng} alt='健保署公告連結'/>
-                <span>健保署公告連結</span>
+                <a href={bulletinJpg} className={Styles.link_text}><span>衛服部公告連結</span></a>
             </div>
         </div>
     </div>

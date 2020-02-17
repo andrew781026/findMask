@@ -37,7 +37,7 @@
     color: #656565;
 }
 
-.tooltip_button{
+.tooltip_button {
     color: #fdfdfe;
     background-color: #06b66c;
     border: 0;
@@ -45,10 +45,10 @@
     padding: 10px;
 }
 
-.tooltip{
+.tooltip {
     position: absolute;
-    width: calc( 100% - 26px);
-    top: calc( 100% + 10px);
+    width: calc(100% - 26px);
+    top: calc(100% + 10px);
     border: 1px solid #06b66c;
     border-radius: 3px;
     background-color: #fdfdfe;
@@ -58,7 +58,7 @@
 .tooltip::after {
     content: " ";
     position: absolute;
-    bottom: 100%;  /* At the top of the tooltip */
+    bottom: 100%; /* At the top of the tooltip */
     left: 50%;
     margin-left: -7px;
     border-width: 7px;
@@ -66,8 +66,8 @@
     border-color: transparent transparent #fdfdfe transparent;
 }
 
-.input{
-    border: 1px solid rgba(0,0,0,0.4);
+.input {
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 3px;
     margin-right: 5px;
 }
@@ -80,6 +80,22 @@
     background-color: #0f784c;
     padding-top: 4px;
     padding-bottom: 4px;
+}
+
+.link_text {
+    color: white;
+}
+
+.link_text:visited {
+    color: #2df62c;
+}
+
+.link_text:hover {
+    color: #fdd226;
+}
+
+.link_text:active {
+    color: #e04a36;
 }
 
 .right_p {

@@ -10,10 +10,10 @@
     padding-left: 5px;
 }
 
-.link:active {
-    color: #e2d845;
-}
-
 .link:visited {
     color: #2df12c;
+}
+
+.link:active {
+    color: #e2d845;
 }
