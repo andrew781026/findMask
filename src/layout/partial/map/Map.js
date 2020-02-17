@@ -7,12 +7,15 @@ import Styles from './Map.module.css';
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
+// components
+import Tooltip from "./components/Tooltip";
+import GeoLocated from "./GeoLocation";
+
 // redux
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import ReduxMap from "redux/map/actionReducer";
 import ReduxMask from "redux/mask/actionReducer";
-import Tooltip from "./components/Tooltip";
 
 // 參考資料 : https://leafletjs.com/examples/quick-start/ & https://juejin.im/post/5cc192976fb9a032092e8e0a
 class SimpleExample extends React.Component {
@@ -117,8 +120,17 @@ class SimpleExample extends React.Component {
         // 1 ~ 30 => gold
         // 31 ~ => green
 
+        const maskType = this.props.maskType;
         const mask_adult = store.leftMask.adult;
         const mask_child = store.leftMask.children;
+
+        const getMaskAmount = (maskType) => {
+
+            if (maskType === 'child') return mask_child;
+            else if (maskType === 'adult') return mask_adult;
+            else return mask_child + mask_adult;
+        };
+
 
         const getIcon = (maskAmount) => {
 
@@ -127,7 +139,7 @@ class SimpleExample extends React.Component {
             else return redIcon;
         };
 
-        return L.marker([store.lat, store.lng], {icon: getIcon(mask_adult)});
+        return L.marker([store.lat, store.lng], {icon: getIcon(getMaskAmount(maskType))});
     };
 
     renderMarker = () => {
@@ -150,13 +162,17 @@ class SimpleExample extends React.Component {
         // if props.center change fly to center ? => 外部點擊需要到達目標位置才飛
 
         return (
-            <div id='mapid' className={Styles.content}/>
+            <>
+                <GeoLocated/>
+                <div id='mapid' className={Styles.content}/>
+            </>
         );
     }
 }
 
 const mapStateToProps = state => ({
     center: ReduxMap.Selector.getMapCenter(state),
+    maskType: ReduxMap.Selector.getMaskType(state),
     maskData: ReduxMask.Selector.getMaskData(state),
     nearByMasks: ReduxMask.Selector.getNearByMasks(state),
 });

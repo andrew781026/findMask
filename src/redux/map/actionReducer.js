@@ -3,6 +3,7 @@ import {getReduxDispatch, getReduxState} from "../@createStore";
 const ActionType = {
     SET_MAP_CENTER: '[MAP] SET_MAP_CENTER',
     SET_DISTANCE: '[MAP] SET_DISTANCE',
+    SET_MASK_TYPE: '[MAP] SET_MASK_TYPE',
 };
 
 const ActionCreator = {
@@ -18,11 +19,18 @@ const ActionCreator = {
             Data: distance
         }
     },
+    setMaskType(maskType) {
+        return {
+            type: ActionType.SET_MASK_TYPE,
+            Data: maskType
+        }
+    },
 };
 
 const Selector = {
     getMapCenter: (state) => state.Map.mapCenter,
     getDistance: (state) => state.Map.distance,
+    getMaskType: (state) => state.Map.maskType,
 };
 
 const initialState = {
@@ -33,7 +41,7 @@ const initialState = {
     distance: {
         meter: 5 * 1000
     },
-    maskType: '' // maskType : adult . child
+    maskType: 'adult' // maskType : adult . child
 };
 
 const Reducer = function (state = initialState, action) {
@@ -48,6 +56,12 @@ const Reducer = function (state = initialState, action) {
             return {
                 ...state,
                 distance: action.Data,
+            };
+        }
+        case ActionType.SET_MASK_TYPE: {
+            return {
+                ...state,
+                maskType: action.Data,
             };
         }
         default: {

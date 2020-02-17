@@ -1,10 +1,6 @@
 import React from "react";
 import Styles from './Navbar.module.css';
-import clockPng from 'assets/clock.png';
 import DropDown from './DropDown';
-
-// material component
-import {Button} from '@material-ui/core';
 
 // redux
 import {connect} from 'react-redux';
@@ -12,73 +8,8 @@ import {bindActionCreators} from 'redux';
 import ReduxMap from "redux/map/actionReducer";
 import ReduxMask from "redux/mask/actionReducer";
 
-const medicalStores = [
-    {
-        name: '樹秀藥局',
-        address: '401 台中市東區南京東路92號',
-        time: '08 : 00 ~ 21 : 30',
-        leftMask: {
-            adult: 162,
-            children: 12
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                121.544742,
-                25.050063
-            ]
-        }
-    },
-    {
-        name: '佳美藥局',
-        address: '401 台中市東區南京東路92號',
-        time: '08 : 00 ~ 21 : 30',
-        leftMask: {
-            adult: 106,
-            children: 47
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                121.56066,
-                25.04836
-            ]
-        }
-    },
-    {
-        name: '敦化小林健保藥局',
-        address: '401 台中市東區南京東路92號',
-        time: '08 : 00 ~ 21 : 30',
-        leftMask: {
-            adult: 88,
-            children: 7
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                121.558489,
-                25.058709
-            ]
-        }
-    },
-    {
-        name: '博宇藥局',
-        address: '401 台中市東區南京東路92號',
-        time: '08 : 00 ~ 21 : 30',
-        leftMask: {
-            adult: 180,
-            children: 33
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                121.553125,
-                25.057129
-            ]
-        }
-    },
-];
-
+// assets
+import phoneSvg from 'assets/phone-solid.svg';
 
 class Navbar extends React.Component {
 
@@ -111,6 +42,7 @@ class Navbar extends React.Component {
     render() {
 
         const props = this.props;
+        const {setDistance, setMaskType} = this.props.actions;
 
         const newMedicalStores = this.getMedicalStores();
 
@@ -120,11 +52,18 @@ class Navbar extends React.Component {
                 <div className={Styles.search_root}>
                     <div>距離</div>
                     <DropDown
-                        value={1}
+                        value={3}
                         data={[
-                            {value: 1, label: '5km'},
-                            {value: 2, label: '10km'},
+                            {value: 1, label: '100m'},
+                            {value: 2, label: '500m'},
+                            {value: 3, label: '5km'},
                         ]}
+                        onChange={(newValue) => {
+
+                            if (newValue === 1) setDistance({meter: 100});
+                            else if (newValue === 2) setDistance({meter: 500});
+                            else if (newValue === 3) setDistance({meter: 5 * 1000});
+                        }}
                     />
                     <div className='mt-12'>口罩類別</div>
                     <DropDown
@@ -134,6 +73,13 @@ class Navbar extends React.Component {
                             {value: 2, label: '兒童'},
                             {value: 3, label: '成人與兒童'},
                         ]}
+                        onChange={(newValue) => {
+
+                            // maskType : adult . child
+                            if (newValue === 1) setMaskType('adult');
+                            else if (newValue === 2) setMaskType('child');
+                            else if (newValue === 3) setMaskType('adult & child');
+                        }}
                     />
                 </div>
 
@@ -151,9 +97,12 @@ class Navbar extends React.Component {
                                 <div style={{fontSize: '10px', color: '#848484'}}>{store.address}</div>
                             </div>
                             <div className='flex items-center' style={{paddingTop: '2px', paddingBottom: '2px',}}>
-                                <img src={clockPng} className='pr-4' alt="時鐘圖示"/>
+                                <img src={phoneSvg}
+                                     style={{paddingRight: '3px', paddingLeft: '3px'}}
+                                     height='10px'
+                                     alt="電話圖示"/>
                                 <div style={{verticalAlign: 'middle', fontSize: '10px', color: '#a3a3a3'}}>
-                                    {store.time}
+                                    {store.phone}
                                 </div>
                             </div>
                             <div className='flex'>
@@ -184,6 +133,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
     const actions = {
         setMapCenter: ReduxMap.ActionCreator.setMapCenter,
+        setDistance: ReduxMap.ActionCreator.setDistance,
+        setMaskType: ReduxMap.ActionCreator.setMaskType,
     };
 
     return {
