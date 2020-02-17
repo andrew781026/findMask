@@ -10,6 +10,7 @@ import ReduxMask from "redux/mask/actionReducer";
 
 // assets
 import phoneSvg from 'assets/phone-solid.svg';
+import bigPhoneSvg from 'assets/phone.svg';
 
 class Navbar extends React.Component {
 
@@ -92,7 +93,17 @@ class Navbar extends React.Component {
 
                         <div className={Styles.card_root} key={`card-${index}`}
                              onClick={this.handleClick(store, props.actions.setMapCenter)}>
-                            <div style={{fontWeight: 900, color: '#848484'}}>{store.name}</div>
+                            <div className='flex'>
+                                <div className='flex-1' style={{fontWeight: 900, color: '#848484'}}>{store.name}</div>
+                                <a href={`tel:+886-${store.phone}`} onClick={(e) => {
+                                    e.stopPropagation();  //  <------ Here is the magic
+                                }}>
+                                    <img src={bigPhoneSvg}
+                                         style={{paddingRight: '3px', paddingLeft: '3px'}}
+                                         height='20px'
+                                         alt="電話"/>
+                                </a>
+                            </div>
                             <div style={{paddingTop: '2px'}}>
                                 <div style={{fontSize: '10px', color: '#848484'}}>{store.address}</div>
                             </div>
