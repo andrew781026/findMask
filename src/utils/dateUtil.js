@@ -1,4 +1,4 @@
-const moment = require('moment');
+import moment from 'moment';
 
 class DateUtil {
 
@@ -46,4 +46,4 @@ class DateUtil {
 
 }
 
-module.exports = DateUtil;
+export default DateUtil;
