@@ -14,6 +14,9 @@ import calenderPng from 'assets/calender.png';
 // moment
 import moment from 'moment';
 
+// dateUtil
+import dateUtil from '../../../utils/dateUtil';
+
 const getText = (number) => {
 
     const weekDay = moment().weekday();
@@ -38,6 +41,8 @@ const getText = (number) => {
     }
 };
 
+const getDateStr = date =>`${dateUtil.format(date,'MM/DD')}(${dateUtil.getWeekDayStr(date)})`;
+
 // type : edit . buy . wait
 const Toolbar = (props) => (
     <div className={`flex h-80 shadow-b z-20 relative ${Styles.root}`}>
@@ -46,8 +51,8 @@ const Toolbar = (props) => (
                 <img className='pr-4' src={calenderPng} alt='日曆圖示'/>
                 2020/
             </div>
-            <div className='text-xl my-4'>02/10(一)</div>
-            <div className='font-500' style={{fontSize: '12px'}}>如今日購買，下次最快可購買日為02/17(一)</div>
+            <div className='text-xl my-4'>{getDateStr(new Date())}</div>
+            <div className='font-500' style={{fontSize: '12px'}}>如今日購買，下次最快可購買日為{getDateStr(dateUtil.nextWeek())}</div>
         </div>
         <Hidden xsDown>
             <div className={Styles.right_content}>
@@ -58,7 +63,7 @@ const Toolbar = (props) => (
                 </div>
                 <div className={Styles.link}>
                     <img src={linkPng} alt='健保署公告連結'/>
-                    <a href={bulletinJpg} className={Styles.link_text}><span>衛服部公告連結</span></a>
+                    <a href={bulletinJpg} target='_blank' className={Styles.link_text}><span>衛服部公告連結</span></a>
                 </div>
             </div>
         </Hidden>
