@@ -176,7 +176,6 @@ const Navbar = (props) => (
     </>
 );
 
-
 const mapStateToProps = state => ({
     center: ReduxMap.Selector.getMapCenter(state),
     drawerOpen: ReduxMap.Selector.getDrawerOpen(state),

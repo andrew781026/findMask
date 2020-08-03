@@ -17,6 +17,9 @@ import {bindActionCreators} from 'redux';
 import ReduxMap from "redux/map/actionReducer";
 import ReduxMask from "redux/mask/actionReducer";
 
+// utils
+import {getDebounceFunc} from "../../../utils/throttleUtil";
+
 // 參考資料 : https://leafletjs.com/examples/quick-start/ & https://juejin.im/post/5cc192976fb9a032092e8e0a
 class SimpleExample extends React.Component {
 
@@ -61,7 +64,7 @@ class SimpleExample extends React.Component {
 
         if (this.map) {
             if (this.props.center.fly) this.map.flyTo(this.props.center, 18);
-            this.renderMarker(this.map);
+            getDebounceFunc('renderMarker')(() => this.renderMarker(this.map))
         }
     }
 
@@ -155,17 +158,15 @@ class SimpleExample extends React.Component {
 
             marker.bindPopup(content, {className: 'popupCustom'});
 
-            if (store.lat === this.props.center.lat && store.lng === this.props.center.lng && this.props.center.fly) {
+            if (store.lat === this.props.center.lat && store.lng === this.props.center.lng /* && this.props.center.fly */) {
 
-                // setTimeout(() => marker.bindPopup(content, {className: 'popupCustom'}).openPopup(),1800);
+                marker.openPopup();
             }
         });
 
     };
 
     render() {
-
-        // if props.center change fly to center ? => 外部點擊需要到達目標位置才飛
 
         return (
             <>
