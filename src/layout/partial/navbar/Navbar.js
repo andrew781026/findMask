@@ -25,6 +25,7 @@ class MdNavbar extends React.Component {
         const lat = store.lat;
         const lng = store.lng;
         setMapCenter({lat, lng, fly: true});
+        this.props.toggleDrawer && this.props.toggleDrawer();
     };
 
     getMedicalStores = () => {
@@ -156,7 +157,7 @@ class LeftDrawer extends React.Component {
                 onOpen={this.toggleDrawer}
                 onClose={this.toggleDrawer}
             >
-                <MdNavbar {...this.props}/>
+                <MdNavbar {...this.props} toggleDrawer/>
             </SwipeableDrawer>
         )
     }
@@ -164,15 +165,15 @@ class LeftDrawer extends React.Component {
 
 const Navbar = (props) => (
     <>
-        <Hidden xsDown>
+        <div className="hidden-xs-only">
             <MdNavbar {...props}/>
-        </Hidden>
-        <Hidden smUp>
+        </div>
+        <div className="hidden-sm-and-up">
             <LeftDrawer {...props}/>
             <div className={Styles.setting} onClick={() => setTimeout(props.actions.toggleDrawer, 100)}>
                 <img src={settingSvg} height='20px' alt="設定"/>
             </div>
-        </Hidden>
+        </div>
     </>
 );
 

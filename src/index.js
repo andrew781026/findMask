@@ -14,6 +14,7 @@ import App from './layout/App';
 import './styles/index.css';
 import './styles/map.css';
 import './styles/tailwind.css';
+import './styles/display.css';
 
 const element = (
     <Provider store={createStore()}>

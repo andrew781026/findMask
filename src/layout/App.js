@@ -11,15 +11,11 @@ const App = (props) => {
 
     return (
         <div className='flex-col relative h-screen w-screen'>
-
             <Toolbar/>
             <Footer/>
             <Hint/>
-
             <Navbar/>
-
             <GoogleMap/>
-
         </div>
     );
 };
