@@ -47,6 +47,7 @@ class SimpleExample extends React.Component {
             zoomOffset: -1,
         }).addTo(map);
 
+        // 監聽 map 的移動事件
         map.on('moveend', (e) => {
 
             const latlng = map.getCenter();
@@ -55,7 +56,6 @@ class SimpleExample extends React.Component {
         });
 
         // 計算 5 km 內的藥局 , 並顯示之
-
         this.map = map;
         this.layerGroup = L.layerGroup().addTo(map); // add layerGroup for markers with clearLayers
     }

@@ -157,7 +157,7 @@ class LeftDrawer extends React.Component {
                 onOpen={this.toggleDrawer}
                 onClose={this.toggleDrawer}
             >
-                <MdNavbar {...this.props} toggleDrawer/>
+                <MdNavbar {...this.props} toggleDrawer={this.toggleDrawer}/>
             </SwipeableDrawer>
         )
     }
