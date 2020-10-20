@@ -1,9 +1,13 @@
 # 口罩現存量地圖
 
-> 現在武漢疫情爆發 , 你可以用此地圖找到哪個藥局目前還有口罩  
-> 響應 `六角學院` 製作地圖的[活動](https://challenge.thef2e.com/news/21) ! 
+> 2020 年 2 月武漢爆發新冠肺炎( nCoV )的疫情 ,   
+> 政府 3 月開放 " 查詢口罩剩餘數量的 Open API "  
+> 響應 `六角學院` 製作地圖的[活動](https://challenge.thef2e.com/news/21) !   
+> 本工程師一同製作了 "藥局剩餘數量的口罩地圖"
 
 ### [Demo Page](https://andrew781026.github.io/findMask/)
+
+![](https://i.imgur.com/XWfom23.jpg)
 
 ## API 位置
 

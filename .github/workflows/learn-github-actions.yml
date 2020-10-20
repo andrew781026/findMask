@@ -35,8 +35,9 @@ jobs:
       - name: try to build the project
         run: yarn run build
 
-      # Runs a set of commands using the runners shell
-      - name: deploy html to github page
-        run: |
-          yarn run build
-          yarn run deploy
+      # use actions-gh-pages to deploy dist to gh-pages
+      - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./build
