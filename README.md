@@ -45,6 +45,10 @@ VsCode 套件 - Bracket Pair Colorizer 2
 
 https://mask.goodideas-studio.com/
 
+## 利用 actions-gh-pages 自動部屬 gh-pages
+
+ - [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
+
 ## 武漢肺炎地圖 
 
 台灣版儀錶板 https://viator.maps.arcgis.com/apps/opsdashboard/index.html#/bbd3dfeeec9c494daf178457c7b74c3e
