@@ -30,8 +30,14 @@ jobs:
       - uses: actions/setup-node@v1
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: init the project
         run: |
           npm i -g yarn
           yarn install
+          yarn run start
+
+      # Runs a set of commands using the runners shell
+      - name: deployee html to github page
+        run: |
+          yarn run build
           yarn run deploy
