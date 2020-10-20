@@ -12,7 +12,7 @@ import bulletinJpg from 'assets/bulletin.jpg';
 import calenderPng from 'assets/calender.png';
 
 // moment
-import moment from 'moment';
+// import moment from 'moment';
 
 // dateUtil
 import dateUtil from '../../../utils/dateUtil';
