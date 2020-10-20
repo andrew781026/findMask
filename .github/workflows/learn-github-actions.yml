@@ -30,11 +30,11 @@ jobs:
       - uses: actions/setup-node@v1
 
       # Runs a set of commands using the runners shell
-      - name: init the project
+      - name: try to build the project
         run: |
           npm i -g yarn
           yarn install
-          yarn run start
+          yarn run build
 
       # Runs a set of commands using the runners shell
       - name: deployee html to github page

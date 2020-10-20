@@ -10,7 +10,7 @@ class BigContent extends React.Component {
 
                 <div>
                     | 口罩地圖 ver 1.0 by
-                    <a className={Styles.link} href='https://github.com/andrew781026/findMask' target='_blank'>
+                    <a className={Styles.link} href='https://github.com/andrew781026/findMask' target='_blank' rel="noopener noreferrer">
                         Andrew
                     </a>
                 </div>

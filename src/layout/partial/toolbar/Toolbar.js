@@ -17,6 +17,7 @@ import moment from 'moment';
 // dateUtil
 import dateUtil from '../../../utils/dateUtil';
 
+/*
 const getText = (number) => {
 
     const weekDay = moment().weekday();
@@ -40,8 +41,9 @@ const getText = (number) => {
         }
     }
 };
+*/
 
-const getDateStr = date =>`${dateUtil.format(date,'MM/DD')}(${dateUtil.getWeekDayStr(date)})`;
+const getDateStr = date => `${dateUtil.format(date, 'MM/DD')}(${dateUtil.getWeekDayStr(date)})`;
 
 // type : edit . buy . wait
 const Toolbar = (props) => (
@@ -63,7 +65,9 @@ const Toolbar = (props) => (
                 </div>
                 <div className={Styles.link}>
                     <img src={linkPng} alt='健保署公告連結'/>
-                    <a href={bulletinJpg} target='_blank' className={Styles.link_text}><span>衛服部公告連結</span></a>
+                    <a href={bulletinJpg} target='_blank' rel="noopener noreferrer" className={Styles.link_text}>
+                        <span>衛服部公告連結</span>
+                    </a>
                 </div>
             </div>
         </Hidden>

@@ -1,4 +1,4 @@
-import {getReduxDispatch, getReduxState} from "../@createStore";
+// import {getReduxDispatch, getReduxState} from "../@createStore";
 
 const ActionType = {
     SET_MAP_CENTER: '[MAP] SET_MAP_CENTER',
@@ -84,7 +84,7 @@ const Reducer = function (state = initialState, action) {
     }
 };
 
-const Transformer = {};
+// const Transformer = {};
 
 const AsyncMethods = {};
 

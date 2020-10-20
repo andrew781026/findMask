@@ -1,4 +1,4 @@
-import {getReduxDispatch, getReduxState} from "../@createStore";
+// import {getReduxDispatch, getReduxState} from "../@createStore";
 
 const ActionType = {
     SET_CUSTOMER_DATA: '[CUSTOMER] SET_CUSTOMER_DATA',
@@ -49,26 +49,6 @@ const Reducer = function (state = initialState, action) {
             return state;
         }
     }
-};
-
-const Transformer = {
-
-    CustomerFromApi(data) {
-
-        return (data || []).map(item => ({
-            ...item,
-            code: item.id,
-            show: item.name,
-            user: item.userId,
-            userObj: {
-                id: item.userId,
-                username: item.userName,
-                code: item.userId,
-                show: item.userName,
-            }
-        }));
-    },
-
 };
 
 const AsyncMethods = {

@@ -31,9 +31,9 @@ class GeoLocated extends React.Component {
 
             const latitude = this.props.coords.latitude;
             const longitude = this.props.coords.longitude;
-            const altitude = this.props.coords.altitude;
-            const heading = this.props.coords.heading;
-            const speed = this.props.coords.speed;
+            // const altitude = this.props.coords.altitude;
+            // const heading = this.props.coords.heading;
+            // const speed = this.props.coords.speed;
 
             this.props.actions.setMapCenter({lat: latitude, lng: longitude, fly: true});
         }

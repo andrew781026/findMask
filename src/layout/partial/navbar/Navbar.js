@@ -16,7 +16,7 @@ import bigPhoneSvg from 'assets/phone.svg';
 import settingSvg from 'assets/setting.svg';
 
 // material-ui
-import {Hidden, SwipeableDrawer} from "@material-ui/core";
+import {SwipeableDrawer} from "@material-ui/core";
 
 class MdNavbar extends React.Component {
 

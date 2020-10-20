@@ -1,4 +1,4 @@
-import {getReduxDispatch, getReduxState} from "../@createStore";
+import {getReduxDispatch} from "../@createStore";
 
 import MaskService from 'fetch/MedicalStore';
 
@@ -58,7 +58,7 @@ const Reducer = function (state = initialState, action) {
     }
 };
 
-const Transformer = {};
+// const Transformer = {};
 
 const AsyncMethods = {
 
