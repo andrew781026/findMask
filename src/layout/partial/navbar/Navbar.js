@@ -18,6 +18,23 @@ import settingSvg from 'assets/setting.svg';
 // material-ui
 import {SwipeableDrawer} from "@material-ui/core";
 
+/**
+
+ Create A React Search Bar That Highlights Your Results
+  - https://dev.to/_martinwheeler_/create-a-react-search-bar-that-highlights-your-results-4hdh
+
+ <h1 v-html="keywordHighlight(s.name)"></h1>
+
+ keywordHighlight(val) {
+      return val.replace(new RegExp(this.keywords, 'g'), `<span class="highlight">${this.keywords}</span>`);
+    },
+
+ &::v-deep .highlight {
+    color: #f08d49;
+  }
+
+ * */
+
 class MdNavbar extends React.Component {
 
     handleClick = (store, setMapCenter) => event => {
