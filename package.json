@@ -13,23 +13,23 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
+    "@material-ui/core": "^4.11.4",
     "axios": "^0.21.1",
     "geolib": "^3.3.1",
     "leaflet": "^1.7.1",
     "moment": "^2.29.1",
-    "query-string": "^6.13.6",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-geolocated": "^3.0.1",
-    "react-redux": "^7.2.1",
-    "react-scripts": "3.4.3",
-    "react-uid": "^2.3.0",
-    "redux": "^4.0.5"
+    "query-string": "^7.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-geolocated": "^3.2.0",
+    "react-redux": "^7.2.4",
+    "react-scripts": "4.0.3",
+    "react-uid": "^2.3.1",
+    "redux": "^4.1.0"
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0",
-    "purgecss": "^3.0.0"
+    "gh-pages": "^3.2.0",
+    "purgecss": "^4.0.3"
   },
   "eslintConfig": {
     "extends": "react-app"

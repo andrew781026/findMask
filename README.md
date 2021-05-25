@@ -7,7 +7,7 @@
 
 ### [Demo Page](https://andrew781026.github.io/findMask/)
 
-![](https://i.imgur.com/XWfom23.jpg)
+[![](https://i.imgur.com/XWfom23.jpg)]((https://andrew781026.github.io/findMask/))
 
 ## API 位置
 
