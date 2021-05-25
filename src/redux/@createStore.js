@@ -13,7 +13,7 @@ export const getReduxState = () => store.getState();
 // const dispatch = store.dispatch;
 export const getReduxDispatch = () => store.dispatch;
 
-export default () => {
+const fn = () => {
 
     //如果沒有用 middleware, 改用這個模式
     store = createStore(
@@ -23,3 +23,4 @@ export default () => {
 
     return store;
 };
+export default fn;
